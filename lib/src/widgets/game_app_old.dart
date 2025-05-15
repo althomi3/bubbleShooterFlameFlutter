@@ -1,4 +1,4 @@
-import 'package:flame/game.dart';
+/*import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,7 +8,7 @@ import '../config.dart';
 import 'overlay_screen.dart';                                   
 import 'score_card.dart';
 
-// defines a widget to wrap the flame game in and a screen showing content depending on game state
+// -- GAME-- 
 
 class GameApp extends StatefulWidget {
   const GameApp({super.key});
@@ -31,6 +31,8 @@ class _GameAppState extends State<GameApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      // THEME
       theme: ThemeData(
         useMaterial3: true,
         textTheme: GoogleFonts.pressStart2pTextTheme().apply(
@@ -38,6 +40,8 @@ class _GameAppState extends State<GameApp> {
           displayColor: const Color(0xff184e77),
         ),
       ),
+
+      // BACKGROUND
       home: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
@@ -50,20 +54,28 @@ class _GameAppState extends State<GameApp> {
               ],
             ),
           ),
+
+          //GAME CONTENT
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Center(
                 child: Column(                                  
                   children: [
+
+                    // SCORECARD
                     ScoreCard(score: game.score),
                     Expanded(
                       child: FittedBox(
                         child: SizedBox(
                           width: gameWidth,
                           height: gameHeight,
+
+                          // -- EMBEDS FLAME GAME --
                           child: GameWidget(
                             game: game,
+
+                            // OVERLAYS
                             overlayBuilderMap: {
                               PlayState.welcome.name: (context, game) =>
                                   const OverlayScreen(
@@ -94,4 +106,4 @@ class _GameAppState extends State<GameApp> {
       ),
     );
   }
-}
+}*/
