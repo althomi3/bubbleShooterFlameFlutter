@@ -1,3 +1,8 @@
-# brickbreaker_game_flutter_flame
+# Remake of the OG bubble shooter game
 
-Creates a brick breaker game with Flutter and Flame by following along the Google Codelab tutorial: https://codelabs.developers.google.com/codelabs/flutter-flame-brick-breaker#3
+This project is a custom remake of the OG Bubble Shooter game by Taito Corporation from the 90's. 
+Framework: Flutter
+Language: Dart
+Game Engine: Flame
+
+
