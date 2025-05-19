@@ -4,12 +4,12 @@ import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
-import '../brick_breaker.dart';
+import '../shooter.dart';
 
 
 // defines the bat with which a user can bounce back the ball
 class Bat extends PositionComponent // Bat introduced as position component which needs usage of "render" method below to render the rectangle
-    with DragCallbacks, HasGameReference<BrickBreaker> {
+    with DragCallbacks, HasGameReference<Shooter> {
   Bat({
     required this.cornerRadius,
     required super.position,

@@ -15,8 +15,8 @@ enum PlayState { welcome, playing, gameOver, won } // defines play states
 
 // defines our game by extending FlameGame
 // adds mixins to work with collision detection and get keyboard interaction, e.g., to move bat
-class BrickBreaker extends FlameGame with HasCollisionDetection, KeyboardEvents, TapDetector {
-  BrickBreaker()
+class Shooter extends FlameGame with HasCollisionDetection, KeyboardEvents, TapDetector {
+  Shooter()
       : super(
           camera: CameraComponent.withFixedResolution(
             width: gameWidth, // defined in config file
@@ -38,11 +38,11 @@ class BrickBreaker extends FlameGame with HasCollisionDetection, KeyboardEvents,
       case PlayState.welcome:
       case PlayState.gameOver:
       case PlayState.won:
-        overlays.add(playState.name);
+        //overlays.add(playState.name);
       case PlayState.playing:
-        overlays.remove(PlayState.welcome.name);
-        overlays.remove(PlayState.gameOver.name);
-        overlays.remove(PlayState.won.name);
+        //overlays.remove(PlayState.welcome.name);
+        //overlays.remove(PlayState.gameOver.name);
+        //overlays.remove(PlayState.won.name);
     }
   }
 
@@ -64,7 +64,7 @@ class BrickBreaker extends FlameGame with HasCollisionDetection, KeyboardEvents,
 
     world.removeAll(world.children.query<Ball>());
     world.removeAll(world.children.query<Bat>());
-    world.removeAll(world.children.query<Brick>());
+    world.removeAll(world.children.query<Balls>());
 
     playState = PlayState.playing;  
     score.value = 0; // sets score to 0
@@ -72,7 +72,7 @@ class BrickBreaker extends FlameGame with HasCollisionDetection, KeyboardEvents,
     // adds play ball
     world.add(Ball(                // instantiates the ball we created in ball.dart and adds values for props that were defined in constructor                              
           difficultyModifier: difficultyModifier,
-          radius: ballRadius,
+          radius: ballsRadius,
           position: size / 2, // centers the ball's position
           velocity: Vector2((rand.nextDouble() - 0.5) * width, height * 0.2) // sets a random velocity for x and defines velocity for y
               .normalized() // normalized vector and keeps speed consistent
@@ -85,14 +85,16 @@ class BrickBreaker extends FlameGame with HasCollisionDetection, KeyboardEvents,
     
     // adds bricks to the world
     world.addAll([                                        
-      for (var i = 0; i < brickColors.length; i++) // creates as many bricks in the row as there are colors
+      for (var i = 0; i < colNr; i++) // creates as many bricks in the row as there are colors
         for (var j = 1; j <= 5; j++) // creates 5 rows
-          Brick(
+          Balls(
             position: Vector2( // positions bricks
-              (i + 0.5) * brickWidth + (i + 1) * brickGutter,
-              (j + 2.0) * brickHeight + j * brickGutter,
+              //(i + 0.5) * ballRadius + (i + 1) * ballsGutter + (j.isOdd ? ballWidth / 2 : 0.0),
+              //(i * (ballsRadius * 2 + ballsGutter)) + ballsGutter + (j.isOdd ? ballsRadius : 0.0),              
+              (i+ballRadius) + xOffset + (i * ballSpacing) + (j.isOdd ? ballSpacing / 2 : 0.0),
+              (j + 2.0) * ballHeight + j * ballsGutter,
             ),
-            color: brickColors[i],
+            color: ballsColors[rand.nextInt(ballsColors.length)],
           ),
     ]);    
 

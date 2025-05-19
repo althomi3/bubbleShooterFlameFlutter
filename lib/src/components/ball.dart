@@ -3,28 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/effects.dart';
 import 'bat.dart';
-import 'brick.dart'; // imported to use difficultyModifier
+import 'balls.dart'; // imported to use difficultyModifier
+import '../config.dart';
+import 'dart:math' as math;
 
-import '../brick_breaker.dart';                                 
+import '../shooter.dart';                                 
 import 'play_area.dart';
 
 // defines play ball
-class Ball extends CircleComponent with CollisionCallbacks, HasGameReference<BrickBreaker> { // mixins for collision detection
+class Ball extends CircleComponent with CollisionCallbacks, HasGameReference<Shooter> { // mixins for collision detection
+static final _rand = math.Random();
+static Color get randomColor => ballsColors[_rand.nextInt(ballsColors.length)]; 
+
   Ball({
     required this.velocity,
     required super.position,
     required double radius,
     required this.difficultyModifier,
+    //required Color color,
   }) : super(
             radius: radius,
             anchor: Anchor.center,
             paint: Paint()
-              ..color = const Color(0xff1e6091)
+              ..color = Ball.randomColor
               ..style = PaintingStyle.fill,
               children: [CircleHitbox()],
               );
             
-
   final Vector2 velocity;
   final double difficultyModifier; 
 
@@ -64,7 +69,7 @@ class Ball extends CircleComponent with CollisionCallbacks, HasGameReference<Bri
           (position.x - other.position.x) / other.size.x * game.width * 0.3;
 
     // collision with brick
-    } else if (other is Brick) {     //                            
+    } else if (other is Balls) {     //                            
           if (position.y < other.position.y - other.size.y / 2) {
             velocity.y = -velocity.y;
           } else if (position.y > other.position.y + other.size.y / 2) {
@@ -75,6 +80,7 @@ class Ball extends CircleComponent with CollisionCallbacks, HasGameReference<Bri
             velocity.x = -velocity.x;
           }
           velocity.setFrom(velocity * difficultyModifier);  // with every brick, the vecolity is adjusted by multiplying with the difficultymodifier       
+          paint.color = Ball.randomColor;
       }    
     }
 }

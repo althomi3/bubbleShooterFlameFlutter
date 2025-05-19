@@ -4,11 +4,11 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/collisions.dart'; // package to manage hitboxes
 
-import '../brick_breaker.dart';
+import '../shooter.dart';
 
 
 // Defines Play Area
-class PlayArea extends RectangleComponent with HasGameReference<BrickBreaker> {
+class PlayArea extends RectangleComponent with HasGameReference<Shooter> {
   PlayArea()
       : super(
           paint: Paint()..color = const Color(0xfff2e8cf),

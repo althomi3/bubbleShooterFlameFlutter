@@ -1,7 +1,7 @@
 import 'package:flutter_flame_bubble_shooter_game/src/widgets/game_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../stylesheet.dart';
+import '../config.dart';
 import 'package:flutter/material.dart';
 
 
@@ -52,7 +52,7 @@ class StartScreen extends StatelessWidget {
                 ],
               ),
               
-              onPressed: () => Get.to(() => GameScreen()),
+              onPressed: () => Get.to(() => GameApp()),
             ),
 
 

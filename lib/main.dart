@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'src/stylesheet.dart';
+import 'src/config.dart';
 
 
 // Widgets
