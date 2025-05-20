@@ -93,7 +93,11 @@ static Color get randomColor => ballsColors[_rand.nextInt(ballsColors.length)];
             velocity.x = -velocity.x;
           }
           velocity.setFrom(velocity * difficultyModifier);  // with every brick, the vecolity is adjusted by multiplying with the difficultymodifier       
-          paint.color = Ball.randomColor;
+          
+          Future.delayed(Duration(milliseconds: 100), () { // deplay makes sure that the ball switches the color after gaining some distance to the targets
+            if (!isMounted) return;
+            paint.color = Ball.randomColor;
+          });
       }    
     }
 }

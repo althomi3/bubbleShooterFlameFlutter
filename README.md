@@ -68,4 +68,5 @@ The game is deployed with Firebase and accessible online via the link provided a
 - improving experience when winning a game through animations
 
 
+
 Credentials: Project in scope of the course Device-Agnostic Design at Aalto University, 2025, by Alischa Thomas
