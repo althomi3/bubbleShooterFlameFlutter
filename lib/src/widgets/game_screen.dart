@@ -37,7 +37,7 @@ class GameAppState extends State<GameApp> {
   @override
   Widget build(BuildContext context) {
   final gameService = Get.find<Gameservices>(); // instantiates levelservice to use levels for game configuration
-  final levelService = Get.find<LevelService>(); // instantiates levelservice to use levels for game configuration
+  //final levelService = Get.find<LevelService>(); // instantiates levelservice to use levels for game configuration
 
 
     return MaterialApp(
@@ -48,22 +48,14 @@ class GameAppState extends State<GameApp> {
         useMaterial3: true,
         textTheme: GoogleFonts.orbitronTextTheme().apply(
           bodyColor: white_a,
-          displayColor: const Color(0xff184e77),
+          //displayColor: const Color(0xff184e77),
         ),
       ),
 
       // BACKGROUND
-      home: Scaffold(
-        body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('galaxy_bg_1.jpg'), // path must match pubspec.yaml
-                fit: BoxFit.cover, // covers entire screen
-              ),
-            ),
-
-          //GAME CONTENT
-          child: SafeArea(
+      home: GameScaffold(
+        body: //GAME CONTENT
+          SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Center(
@@ -100,9 +92,10 @@ class GameAppState extends State<GameApp> {
                 ), 
               ),                                             
             ),
-          ),
-        ),
-      ),
+          ),),
+        
+        
+        
     );
   }
 }

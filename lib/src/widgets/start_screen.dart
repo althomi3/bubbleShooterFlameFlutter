@@ -8,40 +8,85 @@ import 'game_button.dart';
 import 'game_scaffold.dart';
 import 'level_screen.dart';
 
-
-
 class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GameScaffold(
-      content: [
-            Center(
-              child: Text("BRICK BREAKER", textAlign: TextAlign.center, style:  GoogleFonts.honk(fontSize: 84),),
+      body: SizedBox.expand(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24, right: 24),
+          child: Column(
+              children: [
+                Expanded( flex: 2,
+                  child: SingleChildScrollView(
+                    child: Column(
+                    children: [
+                      SizedBox(height: 84),
+                      Center(
+                        child: Text(
+                          "BRICK BREAKER",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.honk(fontSize: fontA),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          "meets",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.honk(fontSize: fontA),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          "BUBBLE SHOOTER",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.honk(fontSize: fontA),
+                        ),
+                        ),
+                      Center(
+                          child: Text (
+                          "SHOOT YOUR WAY INTO THE GALAXY BY HITTING BUBBLES OF THE SAME COLOR",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.orbitron(
+                            fontSize: 16,
+                            color: yellow_a,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  ),
+                  
+                  
+                ),
+                
+                Expanded(
+                  flex: 2,
+                  child: SingleChildScrollView(
+                    child: Column(
+                    children: [
+                      Padding(padding: EdgeInsets.only(top: 64)),
+                      GameButton(
+                        text: "START",
+                        enabled: true,
+                        onPressed: () => Get.to(() => LevelScreen()),
+                      ),
+                    ],
+                  ),
+                  ),
+                  
+                  
+                ),
+                SizedBox(height: 84),
+
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.all(8),
-            ),
-            Center(
-              child: Text("meets", textAlign: TextAlign.center, style:  GoogleFonts.honk(fontSize: 84),),
-            ),
-            Padding(
-              padding: EdgeInsets.all(8),
-            ),
-            
-            Center(
-              child: Text("BUBBLE SHOOTER", textAlign: TextAlign.center, style:  GoogleFonts.honk(fontSize: 84),),
-            ),
-            Padding(
-              padding: EdgeInsets.all(32),
-            ),
-            Center(
-              child: Text("SHOOT BUBBLES OF THE SAME COLOR TO BREAK FREE", textAlign: TextAlign.center, style:  GoogleFonts.orbitron(fontSize: 20, color: yellow_a, fontWeight: FontWeight.bold)),
-            ),
-            Padding(
-              padding: EdgeInsets.all(8),
-            ),
-            GameButton(text: "START", enabled: true, onPressed: () => Get.to(() => LevelScreen()),)
-      ],
+        ),
+        
+        
+      ),
+      
     );
   }
 }

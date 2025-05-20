@@ -1,35 +1,49 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_flame_bubble_shooter_game/src/config.dart';
 
 class GameScaffold extends StatelessWidget {
   final List<Widget> content;
-  const GameScaffold({required this.content});
+  final Widget? body; // body needed to start app
+
+  const GameScaffold({this.content = const [], this.body, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('galaxy_bg_1.jpg'), // path must match pubspec.yaml
-                fit: BoxFit.cover, // covers entire screen
+      body: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: responsiveMaxWidth),
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: responsiveMaxWidth), // --- sets maxwidth for screens and game
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'galaxy_bg_1.jpg',
+                        ), // path must match pubspec.yaml
+                        fit: BoxFit.cover, // covers entire screen
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
+
+              Center(
+                child:
+                    body ??
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: content,
+                    ),
+              ),
+            ],
           ),
-      
-      
-      
-      Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: content,
         ),
       ),
-        ],
-    ),
     );
   }
 }
