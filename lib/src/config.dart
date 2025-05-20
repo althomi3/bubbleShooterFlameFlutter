@@ -20,7 +20,7 @@ final ballWidth =
     / ballsColors.length;
 final ballsRadius = gameWidth * 0.04;
 const ballHeight = gameHeight * 0.03;
-const difficultyModifier = 1.03;  
+const difficultyModifier = 1.01;  
 //const colNr = 12;
 //var colNr = (gameWidth / (ballsRadius * 2 + ballsGutter)).floor();
 
@@ -31,15 +31,15 @@ final xOffset = (gameWidth - totalWidth) / 2; // offset to center the row
 
 
 const ballsColors = [                                           
-  Color(0xfff94144),
+  Color.fromARGB(255, 231, 68, 209),
   //Color(0xfff3722c),
   //Color(0xfff8961e),
   //Color(0xfff9844a),
-  Color(0xfff9c74f),
-  Color(0xff90be6d),
-  Color(0xff43aa8b),
+  Color.fromARGB(255, 255, 251, 13),
+//  Color.fromARGB(255, 68, 255, 16),
+  Color.fromARGB(255, 9, 226, 255),
   //Color(0xff4d908e),
-  Color(0xff277da1),
+//  Color(0xff277da1),
   //Color(0xff577590),
 ];
 
@@ -51,6 +51,8 @@ var yellow_a =  Color.fromARGB(255, 252, 245, 23);
 // fillcolors
 var purple_a =  Color.fromARGB(255, 140, 0, 200);
 var yellow_b =  Color.fromARGB(255, 252, 251, 229);
+var blue_a = Color.fromARGB(255, 0, 12, 44);
+var white_a = Color.fromARGB(255, 255, 255, 255);
 
 
 
