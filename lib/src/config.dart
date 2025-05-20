@@ -44,15 +44,26 @@ const ballsColors = [
 ];
 
 // fontcolors
-
 var yellow_a =  Color.fromARGB(255, 252, 245, 23);
+
+// FONTSIZE
+double fontA = 48;
+double fontB = 24;
+
 
 
 // fillcolors
 var purple_a =  Color.fromARGB(255, 140, 0, 200);
 var yellow_b =  Color.fromARGB(255, 252, 251, 229);
 var blue_a = Color.fromARGB(255, 0, 12, 44);
+var blue_b = Color.fromARGB(255, 217, 163, 239);
 var white_a = Color.fromARGB(255, 255, 255, 255);
+var black_a = Color.fromARGB(255, 0, 0, 0);
+
+
+// BREAKPOINTS
+double responsiveMaxWidth = 1200;
+double breakpointM = 820;
 
 
 

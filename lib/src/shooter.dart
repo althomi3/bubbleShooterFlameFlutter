@@ -169,8 +169,5 @@ class Shooter extends FlameGame with HasCollisionDetection, KeyboardEvents, TapD
     }
     return KeyEventResult.handled;
   }    
-
-  @override
-  Color backgroundColor() => const Color(0xfff2e8cf);    
   
 }

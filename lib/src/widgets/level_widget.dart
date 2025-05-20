@@ -19,6 +19,9 @@ class LevelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isWideScreen = screenWidth > breakpointM;
+
     return Obx(() {
       final levels = Iterable.generate(levelService.totalLevels).map((level) {
         return Padding(
@@ -34,11 +37,26 @@ class LevelWidget extends StatelessWidget {
         );
       }).toList();
 
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: levels,
-      );
+
+      // Responsive Layout Change: Levels Layout
+      if (isWideScreen) {
+        // For wide screens: wrap buttons in a row and let them scroll horizontally if overflow
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: levels,
+          ),
+        );
+
+      } else {
+        // For narrow screens: vertical column
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: levels,
+        );
+      }
     });
   }
 }
