@@ -15,7 +15,6 @@ import 'components/components.dart';
 import 'config.dart';
 import 'services/levelservice.dart';
 
-enum PlayState { welcome, playing, gameOver, won } // defines play states
 
 // defines our game by extending FlameGame
 // adds mixins to work with collision detection and get keyboard interaction, e.g., to move bat
@@ -34,34 +33,17 @@ class Shooter extends FlameGame with HasCollisionDetection, KeyboardEvents, TapD
   double get width => size.x;
   double get height => size.y;
 
-  // switch-case condition that swithces game states and shows differen screens / removes them accordingly
-  late PlayState _playState;                                   
-  PlayState get playState => _playState;
-  set playState(PlayState playState) {
-    _playState = playState;
-    switch (playState) {
-      case PlayState.welcome:
-      case PlayState.gameOver:
-      case PlayState.won:
-        //overlays.add(playState.name);
-      case PlayState.playing:
-        //overlays.remove(PlayState.welcome.name);
-        //overlays.remove(PlayState.gameOver.name);
-        //overlays.remove(PlayState.won.name);
-    }
-  }
+
 
   
 
   // defines what to show on game start
   void startGame() {
-    if (playState == PlayState.playing) return;
 
     world.removeAll(world.children.query<Ball>());
     world.removeAll(world.children.query<Bat>());
     world.removeAll(world.children.query<Balls>());
 
-    playState = PlayState.playing;  
     gameService.score.value = 0; // sets score to 0
     var currentLevel = levelService.currentLevel;
 
@@ -83,13 +65,14 @@ class Shooter extends FlameGame with HasCollisionDetection, KeyboardEvents, TapD
     world.addAll([      
       if (currentLevel == 0)
       for (var i = 0; i < colNr; i++) // creates as many bricks in the row as there are colors
-        for (var j = 1; j <= levelService.levelIntensities[0]; j++) // creates 5 rows
-      /*for (var i = 0; i < colNr; i++) // creates as many bricks in the row as there are colors
-        for (var j = 1; j <= 5; j++) // creates 5 rows*/
+        for (var j = 1; j <= levelService.levelIntensities[0]; j++) // creates 5 rows*/
+
+         //for (var i = 0; i < 1; i++) // creates as many bricks in the row as there are colors
+        //for (var j = 1; j <= 1; j++) // creates 5 rows
+      
           Balls(
-            position: Vector2( // positions bricks
-              //(i + 0.5) * ballRadius + (i + 1) * ballsGutter + (j.isOdd ? ballWidth / 2 : 0.0),
-              //(i * (ballsRadius * 2 + ballsGutter)) + ballsGutter + (j.isOdd ? ballsRadius : 0.0),              
+            position: Vector2( // testing: 300,500 // positions bricks
+                          
               (i+ballRadius) + xOffset + (i * ballSpacing) + (j.isOdd ? ballSpacing / 2 : 0.0),
               (j + 2.0) * ballHeight + j * ballsGutter,
             ),
@@ -146,7 +129,6 @@ class Shooter extends FlameGame with HasCollisionDetection, KeyboardEvents, TapD
 
     await world.add(PlayArea()); // ads play area which defines the game dimensions
 
-    playState = PlayState.welcome; // ads welcome screen to world
 
     startGame(); // starts game on loading of game screen
 

@@ -22,7 +22,7 @@ class GameScaffold extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
-                          'galaxy_bg_1.jpg',
+                          'assets/galaxy_bg_1.jpg',
                         ), // path must match pubspec.yaml
                         fit: BoxFit.cover, // covers entire screen
                       ),

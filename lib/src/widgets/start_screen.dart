@@ -57,8 +57,6 @@ class StartScreen extends StatelessWidget {
                     ],
                   ),
                   ),
-                  
-                  
                 ),
                 
                 Expanded(
@@ -78,7 +76,7 @@ class StartScreen extends StatelessWidget {
                   
                   
                 ),
-                SizedBox(height: 84),
+                SizedBox(height: 48),
 
               ],
             ),

@@ -46,8 +46,10 @@ class GameAppState extends State<GameApp> {
       // THEME
       theme: ThemeData(
         useMaterial3: true,
+        scaffoldBackgroundColor: black_a,
         textTheme: GoogleFonts.orbitronTextTheme().apply(
           bodyColor: white_a,
+          
           //displayColor: const Color(0xff184e77),
         ),
       ),

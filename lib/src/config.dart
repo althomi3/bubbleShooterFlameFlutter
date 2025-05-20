@@ -10,7 +10,7 @@ const ballRadius = gameWidth * 0.02;
 
 // Bat dimensions
 const batWidth = gameWidth * 0.2;                             
-const batHeight = ballRadius * 2;
+const batHeight = gameWidth * 0.25;
 const batStep = gameWidth * 0.05;   // defines the steps a bat moves on user interaction
 
 // Brick dimensions

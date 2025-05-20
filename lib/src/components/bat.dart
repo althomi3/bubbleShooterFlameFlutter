@@ -37,10 +37,18 @@ class Bat extends PositionComponent // Bat introduced as position component whic
         _paint);
   }
 
-  @override // updates position on drag
+  /*@override // updates position on drag
   void onDragUpdate(DragUpdateEvent event) {
     super.onDragUpdate(event);
-    position.x = (position.x + event.localDelta.x * 3).clamp(0, game.width);
+    position.x = (position.x + event.localDelta.x * 1.2).clamp(0, game.width);
+  }*/
+
+  // uses canvas position instead of delta to make it feelmore "sticking" to the finger
+  @override
+  void onDragUpdate(DragUpdateEvent event) {
+    super.onDragUpdate(event);
+    // Make the bat center stick to the finger's x position
+    position.x = event.canvasStartPosition.x.clamp(size.x / 2, game.width - size.x / 2);
   }
 
   void moveBy(double dx) { // allows movement of bat by key control
