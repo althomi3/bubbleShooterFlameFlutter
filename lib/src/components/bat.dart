@@ -5,6 +5,7 @@ import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
 import '../shooter.dart';
+import '../config.dart';
 
 
 // defines the bat with which a user can bounce back the ball
@@ -22,7 +23,7 @@ class Bat extends PositionComponent // Bat introduced as position component whic
   final Radius cornerRadius;
 
   final _paint = Paint()
-    ..color = const Color(0xff1e6091)
+    ..color = white_a
     ..style = PaintingStyle.fill;
 
   @override
@@ -39,7 +40,7 @@ class Bat extends PositionComponent // Bat introduced as position component whic
   @override // updates position on drag
   void onDragUpdate(DragUpdateEvent event) {
     super.onDragUpdate(event);
-    position.x = (position.x + event.localDelta.x).clamp(0, game.width);
+    position.x = (position.x + event.localDelta.x * 3).clamp(0, game.width);
   }
 
   void moveBy(double dx) { // allows movement of bat by key control

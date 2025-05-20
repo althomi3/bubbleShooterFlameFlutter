@@ -1,9 +1,15 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/services/gameservices.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/services/levelservice.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/widgets/inline_button.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/widgets/result_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 import '../shooter.dart';
 import '../config.dart';
+import 'game_scaffold.dart';
 
 import 'score_card.dart';
 
@@ -12,12 +18,14 @@ import 'score_card.dart';
 class GameApp extends StatefulWidget {
   const GameApp({super.key});
 
+
  @override                                                     
-  State<GameApp> createState() => _GameAppState();
+  State<GameApp> createState() => GameAppState();
 }
 
-class _GameAppState extends State<GameApp> {
+class GameAppState extends State<GameApp> {
   late final Shooter game;
+
 
   @override
   void initState() {
@@ -28,14 +36,18 @@ class _GameAppState extends State<GameApp> {
 
   @override
   Widget build(BuildContext context) {
+  final gameService = Get.find<Gameservices>(); // instantiates levelservice to use levels for game configuration
+  final levelService = Get.find<LevelService>(); // instantiates levelservice to use levels for game configuration
+
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
       // THEME
       theme: ThemeData(
         useMaterial3: true,
-        textTheme: GoogleFonts.pressStart2pTextTheme().apply(
-          bodyColor: const Color(0xff184e77),
+        textTheme: GoogleFonts.orbitronTextTheme().apply(
+          bodyColor: white_a,
           displayColor: const Color(0xff184e77),
         ),
       ),
@@ -43,16 +55,12 @@ class _GameAppState extends State<GameApp> {
       // BACKGROUND
       home: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xffa9d6e5),
-                Color(0xfff2e8cf),
-              ],
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('galaxy_bg_1.jpg'), // path must match pubspec.yaml
+                fit: BoxFit.cover, // covers entire screen
+              ),
             ),
-          ),
 
           //GAME CONTENT
           child: SafeArea(
@@ -63,7 +71,18 @@ class _GameAppState extends State<GameApp> {
                   children: [
 
                     // SCORECARD
-                    ScoreCard(score: game.score),
+                    ScoreCard(score: gameService.score, textsize: 32,),
+
+                    // Button for testing
+                    /*ElevatedButton(
+                      onPressed: () {
+                        Get.find<LevelService>().debugPrintCompletedLevels();
+                      },
+                      child: Text('Print Completed Levels'),
+                    ),*/
+
+                    // Controls during game
+                    InlineButton(onPressed: () => Get.to(() => ResultScreen()), buttonText: "End Game",), // End Game
                     Expanded(
                       child: FittedBox(
                         child: SizedBox(

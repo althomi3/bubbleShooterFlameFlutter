@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/collisions.dart'; // package to manage hitboxes
+import '../config.dart';
 
 import '../shooter.dart';
 
@@ -11,7 +12,7 @@ import '../shooter.dart';
 class PlayArea extends RectangleComponent with HasGameReference<Shooter> {
   PlayArea()
       : super(
-          paint: Paint()..color = const Color(0xfff2e8cf),
+          paint: Paint()..color = blue_a,
           children: [RectangleHitbox()], // adds Hitbox as a child of the RectangleComponent matches size of parent component = game and prevents ball from dropping out of the game
         );
 

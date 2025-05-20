@@ -2,18 +2,29 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/effects.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/services/gameservices.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/widgets/level_screen.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/widgets/result_screen.dart';
+import 'package:flutter_flame_bubble_shooter_game/src/widgets/start_screen.dart';
 import 'bat.dart';
 import 'balls.dart'; // imported to use difficultyModifier
 import '../config.dart';
 import 'dart:math' as math;
+import 'package:get/get.dart';
+import 'package:get/get.dart';
+
+
 
 import '../shooter.dart';                                 
 import 'play_area.dart';
 
 // defines play ball
 class Ball extends CircleComponent with CollisionCallbacks, HasGameReference<Shooter> { // mixins for collision detection
+final gameService = Get.find<Gameservices>(); // instantiates levelservice to use levels for game configuration
 static final _rand = math.Random();
 static Color get randomColor => ballsColors[_rand.nextInt(ballsColors.length)]; 
+
+
 
   Ball({
     required this.velocity,
@@ -53,11 +64,13 @@ static Color get randomColor => ballsColors[_rand.nextInt(ballsColors.length)];
         velocity.x = -velocity.x;
       } else if (intersectionPoints.first.x >= game.width) {
         velocity.x = -velocity.x;
+
+        // Loose the game
       } else if (intersectionPoints.first.y >= game.height) {
         add(RemoveEffect( // removes ball from game world                                      
           delay: 0.35,
           onComplete: () {                                    
-              game.playState = PlayState.gameOver; // set gamestate to gameOver when ball removed
+               Get.to(() => ResultScreen()); // set gamestate to gameOver when ball removed
           }
         ));
       }
